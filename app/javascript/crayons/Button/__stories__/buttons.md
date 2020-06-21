@@ -1,11 +1,3 @@
-import { h } from 'preact';
-
-export default {
-  title: '3_Components/Buttons',
-};
-
-export const Description = () => (
-  <div className="container">
     <h2>Buttons</h2>
     <p>
       Use Danger style only for destructive actions like removing something. Do
@@ -25,9 +17,3 @@ export const Description = () => (
       unit for default size buttons (no matter if stacking horizontally or
       vertically).
     </p>
-  </div>
-);
-
-Description.story = {
-  name: 'description',
-};

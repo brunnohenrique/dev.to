@@ -1,12 +1,18 @@
 import { h } from 'preact';
 import { withKnobs, text } from '@storybook/addon-knobs/react';
 import { Dropdown } from '@crayons';
+import dropdownDocs from './dropdowns.md';
 
 import './dropdown-css-helper.scss';
 
 export default {
   title: '3_Components/Dropdowns',
   decorators: [withKnobs],
+  parameters: {
+    notes: {
+      markdown: dropdownDocs,
+    },
+  },
 };
 
 export const Default = () => (

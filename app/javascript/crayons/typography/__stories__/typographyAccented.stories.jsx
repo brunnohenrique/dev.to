@@ -2,28 +2,16 @@ import { h } from 'preact';
 
 import '../../storybook-utilities/designSystem.scss';
 import './typography.scss';
+import typographyAccentedDocs from './typography_accented.md';
 
 export default {
   title: '2_Base/Typography/Accent',
+  parameters: {
+    notes: {
+      markdown: typographyAccentedDocs,
+    },
+  },
 };
-
-export const Description = () => (
-  <div className="container">
-    {' '}
-    <h2>Accent typography</h2>
-    <p>
-      Its main purpose is to add a bit of flavor to DEV brand but it should
-      never be the main font.
-    </p>
-    <p>Please, do not overuse Accent typography.</p>
-    <p>
-      We strongly encourage to limit number of sizes and weights to what
-      presesented below.
-    </p>
-  </div>
-);
-
-Description.story = { name: 'description' };
 
 export const SampleTexts = () => (
   <div className="sample-texts">

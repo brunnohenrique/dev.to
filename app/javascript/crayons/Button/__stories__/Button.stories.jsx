@@ -8,6 +8,7 @@ import {
 } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 import { Button } from '@crayons';
+import buttonDocs from './buttons.md';
 
 import '../../storybook-utilities/designSystem.scss';
 
@@ -22,6 +23,11 @@ const commonProps = {
 export default {
   title: '3_Components/Buttons',
   decorator: [withKnobs],
+  parameters: {
+    notes: {
+      markdown: buttonDocs,
+    },
+  },
 };
 
 export const Default = () => (

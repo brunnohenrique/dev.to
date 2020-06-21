@@ -2,6 +2,7 @@ import { h } from 'preact';
 import { withKnobs, text, boolean, select } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 import { Modal, Button } from '@crayons';
+import modalDocs from './modals.md';
 
 import '../../storybook-utilities/designSystem.scss';
 
@@ -12,6 +13,11 @@ const commonProps = {
 export default {
   title: '3_Components/Modals',
   decorator: [withKnobs],
+  parameters: {
+    notes: {
+      markdown: modalDocs,
+    },
+  },
 };
 
 export const Default = () => (
