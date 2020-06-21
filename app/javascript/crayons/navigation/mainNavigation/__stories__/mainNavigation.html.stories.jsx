@@ -1,9 +1,13 @@
 import { h } from 'preact';
 
 import '../../../storybook-utilities/designSystem.scss';
+import mainNavigationDocs from './main_navigation.md';
 
 export default {
   title: '3_Components/Navigation/Main Navigation/HTML',
+  parameters: {
+    notes: { markdown: mainNavigationDocs },
+  },
 };
 
 export const Default = () => (

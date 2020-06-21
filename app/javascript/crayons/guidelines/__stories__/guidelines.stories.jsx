@@ -19,7 +19,9 @@ export default {
   },
 };
 
-export const Crayons = () => <p>See the notes section above.</p>;
+export const Crayons = () => (
+  <p>See the notes section in the Storybook panel.</p>
+);
 
 Crayons.story = {
   name: 'documentation',

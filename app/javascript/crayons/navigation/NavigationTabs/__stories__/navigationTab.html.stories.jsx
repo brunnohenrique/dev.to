@@ -1,8 +1,12 @@
 import { h } from 'preact';
 
 import '../../../storybook-utilities/designSystem.scss';
+import tabDocs from './tabs.md';
 
-export default { title: '3_Components/Navigation/Tabs/HTML' };
+export default {
+  title: '3_Components/Navigation/Tabs/HTML',
+  parameters: { notes: { markdown: tabDocs } },
+};
 
 export const Default = () => (
   <div className="crayons-tabs">

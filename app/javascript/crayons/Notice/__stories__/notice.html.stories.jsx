@@ -1,9 +1,11 @@
 import { h } from 'preact';
 
 import '../../storybook-utilities/designSystem.scss';
+import noticeDocs from './notices.md';
 
 export default {
   title: '3_Components/Notices/HTML',
+  parameters: { notes: { markdown: noticeDocs } },
 };
 
 export const Default = () => (
