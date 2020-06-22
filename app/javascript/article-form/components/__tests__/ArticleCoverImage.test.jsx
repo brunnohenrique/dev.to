@@ -1,7 +1,6 @@
 import { h } from 'preact';
 import { render, fireEvent, waitForElement } from '@testing-library/preact';
 import { axe } from 'jest-axe';
-import { ImageUploader } from '../ImageUploader';
 import fetch from 'jest-fetch-mock';
 import '@testing-library/jest-dom';
 import { ArticleCoverImage } from '../ArticleCoverImage';
@@ -10,12 +9,10 @@ global.fetch = fetch;
 
 describe('<ArticleCoverImage />', () => {
   const fakeLinksResponse = JSON.stringify({
-    "image": [
-      "/i/changed-fake-link.jpg"
-    ]
+    image: ['/i/changed-fake-link.jpg'],
   });
   const fakeErrorMessage = {
-    message: "Some Fake Error"
+    message: 'Some Fake Error',
   };
   it('should have no a11y violations', async () => {
     const { container } = render(
@@ -30,10 +27,7 @@ describe('<ArticleCoverImage />', () => {
 
   it('displays an upload input when there is no main image', () => {
     const { getByLabelText } = render(
-      <ArticleCoverImage
-        mainImage=""
-        onMainImageUrlChange={jest.fn()}
-      />,
+      <ArticleCoverImage mainImage="" onMainImageUrlChange={jest.fn()} />,
     );
     const uploadInput = getByLabelText(/add a cover image/i);
     expect(uploadInput.getAttribute('type')).toEqual('file');
@@ -43,7 +37,7 @@ describe('<ArticleCoverImage />', () => {
     it('shows the uploaded image', () => {
       const { getByAltText } = render(
         <ArticleCoverImage
-          mainImage={'/some-fake-image.jpg'}
+          mainImage="/some-fake-image.jpg"
           onMainImageUrlChange={jest.fn()}
         />,
       );
@@ -54,7 +48,7 @@ describe('<ArticleCoverImage />', () => {
     it('shows the change and remove buttons', () => {
       const { getByText } = render(
         <ArticleCoverImage
-          mainImage={'/some-fake-image.jpg'}
+          mainImage="/some-fake-image.jpg"
           onMainImageUrlChange={jest.fn()}
         />,
       );
@@ -66,7 +60,7 @@ describe('<ArticleCoverImage />', () => {
       const onMainImageUrlChange = jest.fn();
       const { getByText } = render(
         <ArticleCoverImage
-          mainImage={'/some-fake-image.jpg'}
+          mainImage="/some-fake-image.jpg"
           onMainImageUrlChange={onMainImageUrlChange}
         />,
       );
@@ -80,7 +74,7 @@ describe('<ArticleCoverImage />', () => {
       const onMainImageUrlChange = jest.fn();
       const { getByLabelText } = render(
         <ArticleCoverImage
-          mainImage={'/some-fake-image.jpg'}
+          mainImage="/some-fake-image.jpg"
           onMainImageUrlChange={onMainImageUrlChange}
         />,
       );
@@ -91,10 +85,10 @@ describe('<ArticleCoverImage />', () => {
       });
 
       fetch.mockResponse(fakeLinksResponse);
-      fireEvent.change(inputEl, {target: {files: [file]}});
+      fireEvent.change(inputEl, { target: { files: [file] } });
       expect(inputEl.files[0]).toEqual(file);
       expect(inputEl.files).toHaveLength(1);
-      expect(onMainImageUrlChange).toHaveBeenCalledTimes(1)
+      expect(onMainImageUrlChange).toHaveBeenCalledTimes(1);
 
       // await waitForElement(() =>
       //   expect(onMainImageUrlChange).toHaveBeenCalledTimes(1),
@@ -106,7 +100,7 @@ describe('<ArticleCoverImage />', () => {
     const onMainImageUrlChange = jest.fn();
     const { getByText, getByLabelText } = render(
       <ArticleCoverImage
-        mainImage={'/some-fake-image.jpg'}
+        mainImage="/some-fake-image.jpg"
         onMainImageUrlChange={onMainImageUrlChange}
       />,
     );
@@ -116,10 +110,8 @@ describe('<ArticleCoverImage />', () => {
     });
 
     fetch.mockReject(fakeErrorMessage);
-    fireEvent.change(inputEl, {target: {files: [file]}});
+    fireEvent.change(inputEl, { target: { files: [file] } });
 
-    await waitForElement(() =>
-      getByText(/some fake error/i)
-    );
+    await waitForElement(() => getByText(/some fake error/i));
   });
 });

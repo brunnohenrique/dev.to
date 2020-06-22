@@ -8,21 +8,22 @@ import FollowTags from '../FollowTags';
 global.fetch = fetch;
 
 describe('FollowTags', () => {
-  const renderFollowTags = () => render(
-    <FollowTags
-      next={jest.fn()}
-      prev={jest.fn()}
-      currentSlideIndex={1}
-      slidesCount={5}
-      communityConfig={{
-        communityName: 'Community Name',
-        communityLogo: '/x.png',
-        communityBackground: '/y.jpg',
-        communityDescription: "Some community description",
-      }}
-      previousLocation={null}
-    />
-  );
+  const renderFollowTags = () =>
+    render(
+      <FollowTags
+        next={jest.fn()}
+        prev={jest.fn()}
+        currentSlideIndex={1}
+        slidesCount={5}
+        communityConfig={{
+          communityName: 'Community Name',
+          communityLogo: '/x.png',
+          communityBackground: '/y.jpg',
+          communityDescription: 'Some community description',
+        }}
+        previousLocation={null}
+      />,
+    );
 
   const getUserData = () =>
     JSON.stringify({
@@ -54,7 +55,8 @@ describe('FollowTags', () => {
   ]);
 
   beforeAll(() => {
-    document.head.innerHTML = '<meta name="csrf-token" content="some-csrf-token" />';
+    document.head.innerHTML =
+      '<meta name="csrf-token" content="some-csrf-token" />';
     document.body.setAttribute('data-user', getUserData());
   });
 
@@ -78,11 +80,9 @@ describe('FollowTags', () => {
 
   it('should update the navigation button text, follow status and count when you follow a tag', async () => {
     fetch.mockResponse(fakeTagsResponse);
-    const { getByText, findByText, findAllByText, getByTestId } = renderFollowTags();
+    const { getByText, findByText, findAllByText } = renderFollowTags();
 
-    const followButtons = await waitForElement(() =>
-      findAllByText('Follow'),
-    );
+    const followButtons = await waitForElement(() => findAllByText('Follow'));
     findByText(/skip for now/);
 
     // click on the first follow button
@@ -90,9 +90,7 @@ describe('FollowTags', () => {
     button.click();
 
     // it should change to Following and update the count
-    await waitForElement(() =>
-      findByText(/Following/i),
-    );
+    await waitForElement(() => findByText(/Following/i));
     getByText(/1 tag selected/i);
     getByText(/continue/i);
   });
